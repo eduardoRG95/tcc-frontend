@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles.css';
 
@@ -22,7 +21,7 @@ export default function FormLogin() {
                             <Form.Check type="checkbox" label="Deixe me logado" />
                         </Form.Group>
                         <Button variant="primary" type="submit">
-                            Login
+                            Login   
                     </Button>
                     </Form>
                 </Col>

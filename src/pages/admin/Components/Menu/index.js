@@ -1,13 +1,13 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { FiUser,FiBox } from 'react-icons/fi';
 
 import './styles.css';
 
 export default function Menu() {
     return ( 
-       <div>
-           <a href="/produtos" name="Produtos">Produtos</a>
-           <a href="/usuarios" name="Produtos">Usuários</a>
+       <div class="menu">
+           <a href="/produtos-admin" name="Produtos"> <FiBox /> <span>Produtos</span></a>
+           <a href="/usuarios-admin" name="Produtos"> <FiUser /><span>Usuários</span></a>
        </div>
     );
 }

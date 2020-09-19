@@ -1,0 +1,23 @@
+.menu {
+    display: flex;
+    height: 80px;
+    align-items: center;
+}
+
+a {
+    color: #fff;
+    width: auto;
+    margin: 0px 10px;
+    font-size: 20px;
+    display: flex;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+}
+ 
+a:hover {
+    color: #fffc;
+}
+
+span {
+    padding-left: 1px;
+}

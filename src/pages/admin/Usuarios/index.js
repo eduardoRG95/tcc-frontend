@@ -1,14 +1,19 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Header from '../Components/Header';
-
 import './styles.css';
+import { Container } from 'react-bootstrap';
+
+
+import List from '../Components/Admin/List';
+import Header from '../Components/Admin/Header';
 
 export default function Usuarios() {
     return (
-        <div>   
-            <Header />   
+        <div className="usuarios-container">
+            <Header />
+            <Container>
+                <h1>Usuários</h1>
+                <List />
+            </Container>
         </div>
     );
 }

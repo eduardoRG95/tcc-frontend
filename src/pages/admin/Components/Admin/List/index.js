@@ -2,7 +2,8 @@ import React from 'react';
 import './styles.css';
 import { Row, Col, ListGroup } from 'react-bootstrap';
 
-export default function List() {
+export default function List(props) {
+    console.log(props.listProdutos);
     return (
         <Row className="justify-content-md-center">
             <Col md={10}>

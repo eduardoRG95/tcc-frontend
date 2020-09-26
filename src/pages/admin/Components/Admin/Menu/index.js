@@ -7,7 +7,7 @@ export default function Menu() {
     return ( 
        <div className="menu">
            <a href="/produtos-admin" name="Produtos"> <FiBox /> <span>Produtos</span></a>
-           <a href="/usuarios-admin" name="Produtos"> <FiUser /><span>Usuários</span></a>
+           <a href="/vendedores-admin" name="Produtos"> <FiUser /><span>Vendedores</span></a>
        </div>
     );
 }

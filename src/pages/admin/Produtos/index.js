@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
 import Header from '../Components/Admin/Header';
-import List from '../Components/Admin/List';
+
+import List from '../Components/Produtos/List';
 
 import api from '../../../services/api';
 
-import { Container } from 'react-bootstrap';
+import { Container, Row, Button, Col } from 'react-bootstrap';
+import { FiBox } from 'react-icons/fi';
 import './styles.css';
 
 export default function Produtos() {
@@ -28,6 +30,13 @@ export default function Produtos() {
                 {listProdutos.length > 0 && (
                     <List listProdutos={listProdutos} />
                 )}
+                <Row className="justify-content-md-center">
+                    <Col md={10}>
+                        <Button variant="info" size="lg" block>
+                            <FiBox /> Inserir novo produto
+                        </Button>
+                    </Col>
+                </Row>
             </Container>
         </div>
     );

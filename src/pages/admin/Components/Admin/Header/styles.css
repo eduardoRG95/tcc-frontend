@@ -4,3 +4,8 @@
     margin-bottom: 20px;
     background-color: #006D77;
 }
+@media only screen and (max-width: 500px) { 
+    .header {
+        height: 38px;
+    }
+}

@@ -22,3 +22,23 @@ a:hover {
 span {
     padding-left: 1px;
 }
+#dropdown-basic {
+    display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    #dropdown-basic {
+        display: block;
+        background: transparent;
+        border: 0px solid #006d77;
+        font-size: 20px;
+        text-align: left;
+        height: 37px;
+    }
+    .menu {
+        display: none;
+    }
+    .header {
+        height: 38px;
+    }
+}

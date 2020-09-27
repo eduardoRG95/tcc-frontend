@@ -35,6 +35,9 @@ span {
         text-align: left;
         height: 37px;
     }
+    .dropdown-item {
+         width: 88%;
+    }
     .menu {
         display: none;
     }

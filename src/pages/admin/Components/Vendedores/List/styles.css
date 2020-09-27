@@ -1,6 +1,24 @@
-.list-usuarios {
+.list-vendedores {
     margin: 30px auto 20px;
 }
-.item-list-usuarios{
+.item-list-vendedores{
     margin-bottom: 5px;
+}
+.item-list-vendedores {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+}
+.item-list-vendedores .item-name{
+    width: 70%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+    overflow: hidden;
+}
+.item-list-vendedores .item-delete,
+.item-list-vendedores .item-edit{
+    flex-grow: 1;
+    cursor: pointer;
+    text-align: right;
 }

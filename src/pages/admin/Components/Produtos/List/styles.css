@@ -1,6 +1,19 @@
 .list-usuarios {
     margin: 30px auto 20px;
 }
-.item-list-usuarios{
+.item-list-usuarios {
     margin-bottom: 5px;
+}
+
+.item-list-usuarios .item-name {
+    display: block;
+    width: 50%;
+}
+.item-list-usuarios .item-valor {
+    display: block;
+    width: 30%;
+}
+.item-list-usuarios .item-delete,
+.item-list-usuarios .item-edit{
+    cursor: pointer;
 }

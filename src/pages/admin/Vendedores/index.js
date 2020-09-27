@@ -13,7 +13,7 @@ export default function Vendedores() {
     const [listVendedores, setListVendedores] = useState([]);
 
     useEffect(() => {
-        api.get('vendedores', {
+        api.get('vendedor', {
 
         }).then(response => {
             setListVendedores(response.data)

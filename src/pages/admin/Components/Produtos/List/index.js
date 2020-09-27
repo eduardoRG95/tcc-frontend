@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button } from 'react-bootstrap';
+import { FiXCircle, FiEdit } from 'react-icons/fi';
 
 
 export default function List(props) {
@@ -8,7 +9,12 @@ export default function List(props) {
     const [listagem, setListagem] = useState(props.listProdutos);
     
     const itens = listagem.map((item) =>
-            <ListGroup.Item key={item.id} className="item-list-usuarios">{item.nome}</ListGroup.Item>
+            <ListGroup.Item key={item.id} className="item-list-usuarios">
+                <span className="item-name"> {item.nome}  </span> 
+                <span className="item-valor"> R$ {item.valor} </span> 
+                <span className="item-delete"><FiXCircle /></span>
+                <span className="item-edit"><FiEdit /></span>                                                
+            </ListGroup.Item>
         );
         
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Header from '../Components/Admin/Header';
-import InputsLogin from '../Components/Admin/FormLogin';
+import Header from '../../Components/Admin/Header';
+import InputsLogin from '../../Components/Login/FormLogin';
 
 import './styles.css';
 

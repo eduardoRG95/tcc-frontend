@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Login from "./pages/Admin/Login";
-import Vendedores from "./pages/Admin/Vendedores";
-import Produtos from "./pages/Admin/Produtos";
-import Clientes from "./pages/Admin/Clientes";
+import Login from "./pages/Login";
+import Vendedores from "./pages/Vendedores";
+import Produtos from "./pages/Produtos";
+import Clientes from "./pages/Clientes";
 
 export default function Routes() {
     return (

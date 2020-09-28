@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
-import api from '../../../../../services/api';
+import api from '../../../services/api';
 
 import './styles.css';
 

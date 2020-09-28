@@ -19,7 +19,7 @@ export default function Clientes() {
         }).then(response => {
             setListClientes(response.data)
         })
-    }, [])
+    }, []);
 
     return (
         <div className="usuarios-container">

@@ -4,7 +4,7 @@ import api from '../../../../../services/api';
 
 import './styles.css';
 
-export default function ModalInsertDelete(props) {
+export default function ModalInsert(props) {
     const [nome, setNome] = useState('')
     const [valor, setValor] = useState('')
     const [quantidade, setQuantidade] = useState('')
@@ -17,7 +17,7 @@ export default function ModalInsertDelete(props) {
             valor,
             quantidade
         }
-        const response =  await api.post('/produto', data);
+        const response = await api.put('/produto', data);
     }
 
     return (

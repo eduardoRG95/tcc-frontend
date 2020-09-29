@@ -3,7 +3,7 @@ import './styles.css';
 import { Row, Col, ListGroup, Button } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import ModalDelete from '../ModalDelete';
+import ModalDelete from '../Deletar';
 
 
 export default function List(props) {

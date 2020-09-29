@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Admin/Header';
 
 import List from '../../Components/Produtos/List';
-import Modal from '../../Components/Produtos/Modal';
+
+import Modal from '../../Components/Produtos/Criar';
 
 import api from '../../services/api';
 
-import { Container, Row, Button, Col, MyVerticallyCenteredModal } from 'react-bootstrap';
+import { Container, Row, Button, Col } from 'react-bootstrap';
 import { FiBox } from 'react-icons/fi';
 import './styles.css';
 

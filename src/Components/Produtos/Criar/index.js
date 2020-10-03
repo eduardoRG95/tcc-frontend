@@ -26,31 +26,32 @@ export default function ModalInsert(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
         >
-            <Modal.Title id="contained-modal-title-vcenter">
-                tese
-                <Modal.Header closeButton></Modal.Header>
-            </Modal.Title>
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Criar novo Produto
+                </Modal.Title>
+            </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleRegister}>
                     <Form.Group controlId="formGroupNome">
                         <Form.Label>Nome</Form.Label>
-                        <Form.Control 
+                        <Form.Control
                             type="Nome"
-                            onChange={e => setNome(e.target.value)} 
+                            onChange={e => setNome(e.target.value)}
                             placeholder="Nome" />
                     </Form.Group>
                     <Form.Group controlId="formGroupValor">
                         <Form.Label>Valor</Form.Label>
-                        <Form.Control 
-                            type="Valor" 
-                            onChange={e => setValor(e.target.value)} 
+                        <Form.Control
+                            type="Valor"
+                            onChange={e => setValor(e.target.value)}
                             placeholder="Valor" />
                     </Form.Group>
                     <Form.Group controlId="formGroupQuantidade">
                         <Form.Label>Quantidade</Form.Label>
-                        <Form.Control 
+                        <Form.Control
                             type="Quantidade"
-                            onChange={e => setQuantidade(e.target.value)} 
+                            onChange={e => setQuantidade(e.target.value)}
                             placeholder="Quantidade" />
                     </Form.Group>
                     <Button type="submit">Salvar</Button>

@@ -12,7 +12,6 @@ export default function ModalDelete(props) {
     const handleShow = () => setShow(true);
 
     async function handleDeleteRegister() {
-      console.log(id)
         try {
           const response = await api.delete(`/Produto/${id}`);
         } catch(err) {
@@ -30,18 +29,17 @@ export default function ModalDelete(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Deletar produto  <strong class="id-produto">{id}</strong>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
           <p>
-            teste
+            Você tem certeza que gostaria de excluir esse produto?
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-          <Button onClick={handleDeleteRegister}>confirma</Button>
+          <Button className="btn-danger" onClick={props.onHide}>Cancelar</Button>
+          <Button  onClick={handleDeleteRegister}>Confirmar</Button>
         </Modal.Footer>
       </Modal>
     );

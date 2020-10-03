@@ -24,6 +24,9 @@
 .item-list-produtos .item-delete,
 .item-list-produtos .item-edit{
     flex-grow: 1;
-    cursor: pointer;
     text-align: right;
+}
+.item-list-produtos .item-delete *,
+.item-list-produtos .item-edit *{
+    cursor: pointer;
 }

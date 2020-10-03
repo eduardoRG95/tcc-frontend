@@ -8,7 +8,7 @@ export default function FormLogin() {
         <Container>
             <Row className="justify-content-md-center">
                 <Col md={4}>
-                    <Form>
+                    <Form className="form-login">
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>E-mail</Form.Label>
                             <Form.Control type="email" placeholder="E-mail" />

@@ -29,8 +29,8 @@ export default function List(props) {
             <ListGroup.Item key={item.id} className="item-list-produtos">
                 <span className="item-name"> {item.nome}  </span> 
                 <span className="item-valor"> R$ {item.valor} </span> 
-                <span className="item-edit" onClick={() => EditarProduto(item)} ><FiEdit /></span>                                                
-                <span className="item-delete" onClick={() => DeletarProduto(item.id)} ><FiXCircle /></span>
+                <span className="item-edit"><FiEdit onClick={() => EditarProduto(item)} /></span>                                                
+                <span className="item-delete"><FiXCircle onClick={() => DeletarProduto(item.id)} /></span>
             </ListGroup.Item>
         );
 

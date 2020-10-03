@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
 
 export default function List(props) {
 
-    const [listagem, setListagem] = useState(props.listProdutos);
+    const [listagem] = useState(props.listProdutos);
     
     const itens = listagem.map((item) =>
             <ListGroup.Item key={item.id} className="item-list-produtos">

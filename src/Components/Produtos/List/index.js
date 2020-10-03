@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import ModalDelete from '../Deletar';
+import ModalDeletarProduto from '../Deletar';
+import ModalAlterarProduto from '../Alterar';
 
 
 export default function List(props) {
 
-    const [modalShow, setModalShow] = useState(false);
+    const [modalDeleteShow, setDeleteModalShow] = useState(false);
+    const [modalAlteracaoShow, setAlteracaoModalShow] = useState(false);
+    const [Produto, setProduto] = useState();
     const [idProduto, setIdProduto] = useState();
 
-    const [listagem, setListagem] = useState(props.listProdutos);
+    const [listagem] = useState(props.listProdutos);
 
-    function EnviaIdProduto(id){
+    function DeletarProduto(id){
         setIdProduto(id);
-        setModalShow(true);
+        setDeleteModalShow(true);
     }    
-    
+    function EditarProduto(item){
+        setProduto(item);
+        setAlteracaoModalShow(true);
+    }  
+
     const itens = listagem.map((item) =>
             <ListGroup.Item key={item.id} className="item-list-produtos">
                 <span className="item-name"> {item.nome}  </span> 
                 <span className="item-valor"> R$ {item.valor} </span> 
-                <span className="item-edit"><FiEdit /></span>                                                
-                <span className="item-delete" onClick={() => EnviaIdProduto(item.id)} ><FiXCircle /></span>
+                <span className="item-edit" onClick={() => EditarProduto(item)} ><FiEdit /></span>                                                
+                <span className="item-delete" onClick={() => DeletarProduto(item.id)} ><FiXCircle /></span>
             </ListGroup.Item>
         );
 
@@ -39,11 +46,18 @@ export default function List(props) {
             </Col>
         </Row>
 
-      <ModalDelete
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+      <ModalDeletarProduto
+        show={modalDeleteShow}
+        onHide={() => setDeleteModalShow(false)}
         id={idProduto}  
       />
-        </div>
+      {Produto && (
+        <ModalAlterarProduto
+            show={modalAlteracaoShow}
+            onHide={() => setAlteracaoModalShow(false)}
+            item={Produto}  
+        /> 
+      )}
+    </div>
     );
 }

@@ -33,9 +33,6 @@ export default function List(props) {
                 <span className="item-delete"><FiXCircle onClick={() => DeletarProduto(item.id)} /></span>
             </ListGroup.Item>
         );
-
-
-        
     return (
         <div>
         <Row className="justify-content-md-center">

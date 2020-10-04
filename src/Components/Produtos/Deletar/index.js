@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import api from '../../../services/api';
 
 import './styles.css';
@@ -8,8 +8,6 @@ import './styles.css';
 export default function ModalDelete(props) {
   const { id } = props
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     async function handleDeleteRegister() {
         try {
@@ -17,7 +15,6 @@ export default function ModalDelete(props) {
         } catch(err) {
           alert('Erro ao deletar dados');
         } 
-        
     }
 
     return (

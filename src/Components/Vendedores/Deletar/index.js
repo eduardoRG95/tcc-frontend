@@ -28,7 +28,7 @@ export default function ModalDelete(props) {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Deletar Vendedor  <strong class="id-vendedor">{id}</strong>
+              Deletar Vendedor  <strong className="id-vendedor">{id}</strong>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -3,6 +3,9 @@ import './styles.css';
 import { Row, Col, ListGroup } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
+import ModalDeletarCliente from '../Deletar';
+import ModalAlterarCliente from '../Alterar';
+
 
 export default function List(props) {
 
@@ -26,19 +29,33 @@ export default function List(props) {
     const itens = listagem.map((item) =>
             <ListGroup.Item key={item.idUsuario} className="item-list-produtos">
                 <span className="item-name"> {item.nomeUsuario}  </span> 
-                <span className="item-name"> {item.emailUsuario}  </span> 
+                <span className="item-name"> {item.emailUsuario} </span> 
                 <span className="item-edit"><FiEdit onClick={() => EditarCliente(item)} /></span>                                                
                 <span className="item-delete"><FiXCircle onClick={() => DeletarCliente(item.idUsuario)} /></span>
             </ListGroup.Item>
         );
         
     return (
-        <Row className="justify-content-md-center">
-            <Col md={10}>
-                <ListGroup variant="flush" className="list-usuarios">
-                    {itens}
-                </ListGroup>
-            </Col>
-        </Row>
+        <div>
+            <Row className="justify-content-md-center">
+                <Col md={10}>
+                    <ListGroup variant="flush" className="list-usuarios">
+                        {itens}
+                    </ListGroup>
+                </Col>
+            </Row>
+            <ModalDeletarCliente
+                show={modalDeleteShow}
+                onHide={() => setDeleteModalShow(false)}
+                id={idCliente}
+            />
+            {Cliente && (
+                <ModalAlterarCliente
+                    show={modalAlteracaoShow}
+                    onHide={() => setAlteracaoModalShow(false)}
+                    item={Cliente}  
+                /> 
+            )}
+        </div>
     );
 }

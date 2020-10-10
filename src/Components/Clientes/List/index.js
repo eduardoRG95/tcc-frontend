@@ -6,12 +6,14 @@ import { FiXCircle, FiEdit } from 'react-icons/fi';
 
 export default function List(props) {
 
-    const [listagem] = useState(props.listProdutos);
+    const [listagem] = useState(props.listClientes);
+
+    console.log(listagem)
     
     const itens = listagem.map((item) =>
-            <ListGroup.Item key={item.id} className="item-list-produtos">
-                <span className="item-name"> {item.nome}  </span> 
-                <span className="item-valor"> R$ {item.valor} </span> 
+            <ListGroup.Item key={item.idUsuario} className="item-list-produtos">
+                <span className="item-name"> {item.nomeUsuario}  </span> 
+                <span className="item-name"> {item.emailUsuario}  </span> 
                 <span className="item-edit"><FiEdit /></span>                                                
                 <span className="item-delete"><FiXCircle /></span>
             </ListGroup.Item>

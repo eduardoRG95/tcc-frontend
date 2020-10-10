@@ -5,7 +5,6 @@ import { FiUser } from 'react-icons/fi';
 import api from '../../services/api';
 
 import List from '../../Components/Clientes/List';
-import Modal from '../../Components/Clientes/Modal';
 import Header from '../../Components/Admin/Header';
 
 import './styles.css'; 
@@ -14,7 +13,7 @@ export default function Clientes() {
     const [listClientes, setListClientes] = useState([]);
 
     useEffect(() => {
-        api.get('Clientes', {
+        api.get('Usuario', {
 
         }).then(response => {
             setListClientes(response.data)

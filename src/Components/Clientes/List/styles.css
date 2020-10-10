@@ -11,7 +11,7 @@
     flex-grow: 2;
 }
 .item-list-produtos .item-name{
-    width: 50%;
+    width: 45%;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 0;

@@ -12,13 +12,13 @@ export default function List(props) {
     const [modalDeleteShow, setDeleteModalShow] = useState(false);
     const [modalAlteracaoShow, setAlteracaoModalShow] = useState(false);
     const [Cliente, setCliente] = useState();
-    const [idCliente, setIdCliente] = useState();
+    const [idUsuario, setIdUsuario] = useState();
 
     const [listagem] = useState(props.listClientes);
 
 
     function DeletarCliente(id){
-        setIdCliente(id);
+        setIdUsuario(id);
         setDeleteModalShow(true);
     }    
     function EditarCliente(item){
@@ -47,7 +47,7 @@ export default function List(props) {
             <ModalDeletarCliente
                 show={modalDeleteShow}
                 onHide={() => setDeleteModalShow(false)}
-                id={idCliente}
+                id={idUsuario}
             />
             {Cliente && (
                 <ModalAlterarCliente

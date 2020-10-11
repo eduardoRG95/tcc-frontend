@@ -5,24 +5,22 @@ import api from '../../../services/api';
 import './styles.css';
 
 
-export default function ModalDelete(props) {
+export default function ModalDeletar(props) {
 
-  const [idCliente]  = useState(props.id)
+    const id = props.id
 
     const [show, setShow] = useState(false);
 
     async function handleDeleteRegister() {
         try {
-          console.log(idCliente)
-          const response = await api.delete(`/Usuario/${idCliente}`);
-          console.log(response)
+          const response = await api.delete(`/Usuario/${id}`);    
         } catch(err) {
           alert('Erro ao deletar dados');
         } 
     }
 
     return (
-     ( idCliente && <Modal
+   <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -30,7 +28,7 @@ export default function ModalDelete(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Remover cliente  <strong className="id-produto">{idCliente}</strong>
+            Remover cliente  <strong className="id-produto">{ id }</strong>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -42,6 +40,6 @@ export default function ModalDelete(props) {
           <Button className="btn-danger" onClick={props.onHide}>Cancelar</Button>
           <Button  onClick={handleDeleteRegister}>Confirmar</Button>
         </Modal.Footer>
-      </Modal>)
+      </Modal>
     );
 }

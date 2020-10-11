@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import api from '../../../services/api';
+import { FiBox } from 'react-icons/fi';
 
 import './styles.css';
 
 export default function ModalInsert(props) {
+
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     const [nome, setNome] = useState('')
     const [valor, setValor] = useState('')
     const [quantidade, setQuantidade] = useState('')
@@ -21,9 +28,15 @@ export default function ModalInsert(props) {
     }
 
     return (
+        <div>
+             <Button variant="info" size="lg" block onClick={() => handleShow(true)}>
+                <FiBox /> Inserir novo produto
+            </Button>
         <Modal
             {...props}
             size="lg"
+            show={show}
+            onHide={handleClose} 
             aria-labelledby="contained-modal-title-vcenter"
         >
             <Modal.Header closeButton>
@@ -58,5 +71,6 @@ export default function ModalInsert(props) {
                 </Form>
             </Modal.Body>
         </Modal>
+        </div>
     );
 }

@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Admin/Header';
 
 import List from '../../Components/Produtos/List';
-import Modal from '../../Components/Produtos/Criar';
+import ModalInsert from '../../Components/Produtos/Criar';
 
 import api from '../../services/api';
 
-import { Container, Row, Button, Col } from 'react-bootstrap';
-import { FiBox } from 'react-icons/fi';
+import { Container, Row,Col } from 'react-bootstrap';
+
 import './styles.css';
 
 export default function Produtos() {
 
-    const [modalShow, setModalShow] = useState(false);
+  
     const [listProdutos, setListProdutos] = useState([]);
 
     useEffect(() => {
@@ -34,14 +34,7 @@ export default function Produtos() {
                 )}
                 <Row className="justify-content-md-center">
                     <Col md={10}>
-                        <Button variant="info" size="lg" block onClick={() => setModalShow(true)}>
-                            <FiBox /> Inserir novo produto
-                        </Button>
-
-                        <Modal
-                            show={modalShow}
-                            onHide={() => setModalShow(false)}
-                        />
+                        <ModalInsert  />
                     </Col>
                 </Row>
             </Container>

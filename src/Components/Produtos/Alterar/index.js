@@ -5,7 +5,10 @@ import api from '../../../services/api';
 import './styles.css';
 
 export default function ModalAlteracao(props) {
-    const [id, setId] = useState(props.item.id)
+
+    console.log(props)
+
+    const [id] = useState(props.item.id)
     const [nome, setNome] = useState(props.item.nome)
     const [valor, setValor] = useState(props.item.valor)
     const [quantidade, setQuantidade] = useState(props.item.quantidade)
@@ -19,6 +22,11 @@ export default function ModalAlteracao(props) {
             quantidade
         }
         const response = await api.post('/produto', data);
+        if (response.status == 200) {
+        
+        }else{
+                
+        }
     }
 
     return (

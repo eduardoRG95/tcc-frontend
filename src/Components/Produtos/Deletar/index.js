@@ -6,12 +6,12 @@ import './styles.css';
 
 
 export default function ModalDelete(props) {
-  const { id } = props
-    const [show, setShow] = useState(false);
+    const { id } = props
 
     async function handleDeleteRegister() {
         try {
           const response = await api.delete(`/Produto/${id}`);
+
         } catch(err) {
           alert('Erro ao deletar dados');
         } 
@@ -36,7 +36,7 @@ export default function ModalDelete(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-danger" onClick={props.onHide}>Cancelar</Button>
-          <Button  onClick={handleDeleteRegister}>Confirmar</Button>
+          <Button  onClick={props.onHide && handleDeleteRegister}>Confirmar</Button>
         </Modal.Footer>
       </Modal>
     );

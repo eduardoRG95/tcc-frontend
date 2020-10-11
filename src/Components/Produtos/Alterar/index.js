@@ -6,8 +6,6 @@ import './styles.css';
 
 export default function ModalAlteracao(props) {
 
-    console.log(props)
-
     const [id] = useState(props.item.id)
     const [nome, setNome] = useState(props.item.nome)
     const [valor, setValor] = useState(props.item.valor)
@@ -22,11 +20,6 @@ export default function ModalAlteracao(props) {
             quantidade
         }
         const response = await api.post('/produto', data);
-        if (response.status == 200) {
-        
-        }else{
-                
-        }
     }
 
     return (
@@ -65,7 +58,7 @@ export default function ModalAlteracao(props) {
                             onChange={e => setQuantidade(e.target.value)}
                             placeholder="Quantidade" />
                     </Form.Group>
-                    <Button type="submit">Salvar</Button>
+                    <Button type="submit" onClick={props.onHide} >Salvar</Button>
                 </Form>
             </Modal.Body>
         </Modal>

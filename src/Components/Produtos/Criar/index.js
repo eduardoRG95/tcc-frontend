@@ -25,13 +25,18 @@ export default function ModalInsert(props) {
             quantidade
         }
         const response = await api.put('/produto', data);
+        if (response.status == 200) {
+            handleClose()
+        }else{
+            handleClose()
+        }
     }
 
     return (
         <div>
-             <Button variant="info" size="lg" block onClick={() => handleShow(true)}>
-                <FiBox /> Inserir novo produto
-            </Button>
+         <Button variant="info" size="lg" block onClick={() => handleShow(true)}>
+            <FiBox /> Inserir novo produto
+        </Button>
         <Modal
             {...props}
             size="lg"

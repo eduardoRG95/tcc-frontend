@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import api from '../../../services/api';
 
+import { FiUser } from 'react-icons/fi';
+
 import './styles.css';
 
 export default function ModalInsert(props) {
+
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [cidade, setCidade] = useState('')
@@ -20,17 +27,28 @@ export default function ModalInsert(props) {
             uf
         }
         const response = await api.put('/vendedor', data);
+        if (response.status == 200) {
+            handleClose()
+        }else{
+            handleClose()
+        }
     }
 
     return (
+        <div>
+        <Button variant="info" size="lg" block onClick={() => handleShow(true)}>
+            <FiUser /> Inserir novo vendedor
+        </Button>
         <Modal
             {...props}
             size="lg"
+            show={show}
+            onHide={handleClose} 
             aria-labelledby="contained-modal-title-vcenter"
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Criar novo Produto
+                    Cadastrar novo vendedor
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -67,5 +85,6 @@ export default function ModalInsert(props) {
                 </Form>
             </Modal.Body>
         </Modal>
+      </div>
     );
 }

@@ -32,15 +32,8 @@ export default function Vendedores() {
                     <List listVendedores={listVendedores} />
                 )}
                 <Row className="justify-content-md-center">
-                    <Col md={10}>
-                        <Button variant="info" size="lg" block onClick={() => setModalShow(true)}>
-                            <FiUser /> Inserir novo vendedor
-                        </Button>
-
-                        <Modal
-                            show={modalShow}
-                            onHide={() => setModalShow(false)}
-                        />
+                    <Col md={10}>                       
+                        <Modal />
                     </Col>
                 </Row>
             </Container>

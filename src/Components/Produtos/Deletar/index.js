@@ -36,7 +36,7 @@ export default function ModalDelete(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-danger" onClick={props.onHide}>Cancelar</Button>
-          <Button  onClick={props.onHide && handleDeleteRegister}>Confirmar</Button>
+          <Button  onClick={handleDeleteRegister}>Confirmar</Button>
         </Modal.Footer>
       </Modal>
     );

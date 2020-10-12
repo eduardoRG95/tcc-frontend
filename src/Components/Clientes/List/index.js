@@ -36,7 +36,7 @@ export default function List(props) {
         );
         
     return (
-        <div>
+        <div>         
             <Row className="justify-content-md-center">
                 <Col md={10}>
                     <ListGroup variant="flush" className="list-usuarios">

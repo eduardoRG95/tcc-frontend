@@ -21,6 +21,7 @@ export default function ModalDelete(props) {
         <Modal
         {...props}
         size="lg"
+        show={show} onHide={handleClose}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >

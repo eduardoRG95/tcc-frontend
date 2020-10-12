@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import api from '../../../services/api';
 
 import './styles.css';
 
-export default function ModalAlteracao(props) {
-
+export default function ModalAlteracao(props) {    
+    
     const [id] = useState(props.item.id)
     const [nome, setNome] = useState(props.item.nome)
     const [valor, setValor] = useState(props.item.valor)
     const [quantidade, setQuantidade] = useState(props.item.quantidade)
+
+  
 
     async function handleRegister(e) {
         e.preventDefault();
@@ -20,6 +22,7 @@ export default function ModalAlteracao(props) {
             quantidade
         }
         const response = await api.post('/produto', data);
+
     }
 
     return (
@@ -27,7 +30,7 @@ export default function ModalAlteracao(props) {
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter">
-            <Modal.Header closeButton>
+            <Modal.Header closeButton >
                 <Modal.Title id="contained-modal-title-vcenter">
                     Editar Produto <strong>{id}</strong>
                 </Modal.Title>
@@ -58,7 +61,7 @@ export default function ModalAlteracao(props) {
                             onChange={e => setQuantidade(e.target.value)}
                             placeholder="Quantidade" />
                     </Form.Group>
-                    <Button type="submit" onClick={props.onHide} >Salvar</Button>
+                    <Button type="submit" >Salvar</Button>
                 </Form>
             </Modal.Body>
         </Modal>

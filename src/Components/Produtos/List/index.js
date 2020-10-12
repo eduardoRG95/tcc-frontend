@@ -45,7 +45,7 @@ export default function List(props) {
 
       <ModalDeletarProduto
         show={modalDeleteShow}
-        onHide={() => setDeleteModalShow(false)}
+        onHide={() => setDeleteModalShow(modalDeleteShow)}
         id={idProduto}  
       />
       {Produto && (

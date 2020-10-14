@@ -1,60 +1,165 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button, Modal, Form } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import ModalDeletarProduto from '../Deletar';
-import ModalAlterarProduto from '../Alterar';
+import api from '../../../services/api';
 
 
 export default function List(props) {
 
-    const [modalDeleteShow, setDeleteModalShow] = useState(false);
-    const [modalAlteracaoShow, setAlteracaoModalShow] = useState(false);
-    const [Produto, setProduto] = useState();
-    const [idProduto, setIdProduto] = useState();
+    // Propriedades produto
+    const [id, setId] = useState();
+    const [nome, setNome] = useState();
+    const [valor, setValor] = useState();
+    const [quantidade, setQuantidade] = useState();
 
+    // Modal de Excluir
+    const [showDelete, setShowDelete] = useState(false);
+    const handleDeleteClose = () => setShowDelete(false);
+    const handleDeleteShow = () => setShowDelete(true);   
+    
+    // Modal Alteração
+    const [showAlter, setShowAlter] = useState(false);
+    const handleAlterClose = () => setShowAlter(false);
+    const handleAlterShow = () => setShowAlter(true);
+    
+    
+    // Listagem
     const [listagem] = useState(props.listProdutos);
 
-    function DeletarProduto(id){
-        setIdProduto(id);
-        setDeleteModalShow(true);
-    }    
-    function EditarProduto(item){
-        setProduto(item);
-        setAlteracaoModalShow(true);
-    }  
+    
+    function DeletarProduto(id) {
+        setId(id);
+        handleDeleteShow();
+    }
+
+    function EditarProduto(item) {
+        setId(item.id);
+        setNome(item.nome);
+        setValor(item.valor);
+        setQuantidade(item.quantidade);
+        handleAlterShow();
+    }
+
+    async function handleDeleteRegister() {
+        try {
+            const response = await api.delete(`/Produto/${id}`);
+            if (response.status == 200) {
+                alert('Dados excluídos com sucesso');
+                handleDeleteClose();
+            }else {
+                alert('Erro ao deletar dados');
+                handleDeleteClose();
+            }
+
+        } catch (err) {
+            alert('Erro ao deletar dados');
+        }
+    }
+    async function handleAlterRegister(e) {
+        e.preventDefault();
+        console.log("asdasd")
+        try {
+            const data = {
+                id,
+                nome,
+                valor,
+                quantidade,
+            }
+            console.log(data)
+            const response = await api.post('/produto', data);
+            if (response.status == 200) {
+                alert('Dados Alterados com sucesso');
+                handleAlterClose();
+            }else {
+                alert('Erro ao alterar dados');
+                handleAlterClose();
+            }
+        } catch (err) {
+            alert('Erro ao alterar dados');
+        }
+
+    }
+
 
     const itens = listagem.map((item) =>
-            <ListGroup.Item key={item.id} className="item-list-produtos">
-                <span className="item-name"> {item.nome}  </span> 
-                <span className="item-valor"> R$ {item.valor} </span> 
-                <span className="item-edit"><FiEdit onClick={() => EditarProduto(item)} /></span>                                                
-                <span className="item-delete"><FiXCircle onClick={() => DeletarProduto(item.id)} /></span>
-            </ListGroup.Item>
-        );
+        <ListGroup.Item key={item.id} className="item-list-produtos">
+            <span className="item-name"> {item.nome}  </span>
+            <span className="item-valor"> R$ {item.valor} </span>
+            <span className="item-edit"><FiEdit onClick={() => EditarProduto(item)} /></span>
+            <span className="item-delete"><FiXCircle onClick={() => DeletarProduto(item.id)} /></span>
+        </ListGroup.Item>
+    );
     return (
         <div>
-        <Row className="justify-content-md-center">
-            <Col md={10}>
-                <ListGroup variant="flush" className="list-usuarios">
-                    {itens}
-                </ListGroup>
-            </Col>
-        </Row>
+            <Row className="justify-content-md-center">
+                <Col md={10}>
+                    <ListGroup variant="flush" className="list-usuarios">
+                        {itens}
+                    </ListGroup>
+                </Col>
+            </Row>
 
-      <ModalDeletarProduto
-        show={modalDeleteShow}
-        onHide={() => setDeleteModalShow(modalDeleteShow)}
-        id={idProduto}  
-      />
-      {Produto && (
-        <ModalAlterarProduto
-            show={modalAlteracaoShow}
-            onHide={() => setAlteracaoModalShow(false)}
-            item={Produto}  
-        /> 
-      )}
-    </div>
+            <Modal 
+                size="lg" show={showDelete} onHide={handleDeleteClose} aria-labelledby="contained-modal-title-vcenter" centered >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Deletar produto  <strong className="id-produto">{id}</strong>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Você tem certeza que gostaria de excluir esse produto?
+                </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="btn-danger" onClick={handleDeleteClose}>Cancelar</Button>
+                    <Button onClick={handleDeleteRegister}>Confirmar</Button>
+                </Modal.Footer>
+            </Modal>
+
+            {nome &&
+                <Modal
+                    show={showAlter} onHide={handleAlterClose}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter">
+                    <Modal.Header closeButton >
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Editar Produto <strong>{id}</strong>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleAlterRegister}>
+                            <Form.Group controlId="formGroupNome">
+                                <Form.Label>Nome</Form.Label>
+                                <Form.Control
+                                    type="Nome"
+                                    value={nome}
+                                    onChange={e => setNome(e.target.value)}
+                                    placeholder="Nome" />
+                            </Form.Group>
+                            <Form.Group controlId="formGroupValor">
+                                <Form.Label>Valor</Form.Label>
+                                <Form.Control
+                                    type="Valor"
+                                    value={valor}
+                                    onChange={e => setValor(e.target.value)}
+                                    placeholder="Valor" />
+                            </Form.Group>
+                            <Form.Group controlId="formGroupQuantidade">
+                                <Form.Label>Quantidade</Form.Label>
+                                <Form.Control
+                                    type="Quantidade"
+                                    value={quantidade}
+                                    onChange={e => setQuantidade(e.target.value)}
+                                    placeholder="Quantidade" />
+                            </Form.Group>
+                            <Button type="submit" >Salvar</Button>
+                        </Form>
+                    </Modal.Body>
+                </Modal>}
+
+        </div>
     );
 }

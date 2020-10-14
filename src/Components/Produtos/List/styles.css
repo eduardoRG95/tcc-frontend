@@ -30,3 +30,23 @@
 .item-list-produtos .item-edit *{
     cursor: pointer;
 }
+
+.close 
+{
+    width: 10%;
+}
+.modal-footer 
+{
+    flex-wrap: inherit;
+}
+.id-produto
+{
+    color: #bd2130;
+}
+p
+{
+    font-size: 16px;
+}
+strong {
+    color: #006D77;
+}

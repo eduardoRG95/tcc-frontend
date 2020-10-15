@@ -27,7 +27,6 @@ export default function List(props) {
     
     // Listagem
     const [listagem] = useState(props.listProdutos);
-
     
     function DeletarProduto(id) {
         setId(id);
@@ -55,19 +54,19 @@ export default function List(props) {
 
         } catch (err) {
             alert('Erro ao deletar dados');
+            handleDeleteClose();
         }
     }
     async function handleAlterRegister(e) {
         e.preventDefault();
-        console.log("asdasd")
         try {
             const data = {
                 id,
                 nome,
                 valor,
-                quantidade,
+                quantidade
             }
-            console.log(data)
+            
             const response = await api.post('/produto', data);
             if (response.status == 200) {
                 alert('Dados Alterados com sucesso');
@@ -78,6 +77,7 @@ export default function List(props) {
             }
         } catch (err) {
             alert('Erro ao alterar dados');
+            handleAlterClose();
         }
 
     }
@@ -111,7 +111,7 @@ export default function List(props) {
                 <Modal.Body>
                     <p>
                         Você tem certeza que gostaria de excluir esse produto?
-                </p>
+                    </p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-danger" onClick={handleDeleteClose}>Cancelar</Button>

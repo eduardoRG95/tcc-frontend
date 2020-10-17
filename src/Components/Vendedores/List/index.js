@@ -1,28 +1,85 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import ModalDeletarVendedor from '../Deletar';
-import ModalAlterarVendedor from '../Alterar';
+import api from '../../../services/api';
 
 
 export default function List(props) {
 
-    const [modalDeleteShow, setDeleteModalShow] = useState(false);
-    const [modalAlteracaoShow, setAlteracaoModalShow] = useState(false);
-    const [Vendedor, setVendedor] = useState();
-    const [idVendedor, setIdVendedor] = useState();
+
+    // Propriedades clientes
+    const [id, setId] = useState();
+    const [nome, setNome] = useState();
+    const [email, setEmail] = useState();
+    const [cidade, setCidade] = useState();
+    const [uf, setUf] = useState();
+
+     // Modal de Excluir
+     const [showDelete, setShowDelete] = useState(false);
+     const handleDeleteClose = () => setShowDelete(false);
+     const handleDeleteShow = () => setShowDelete(true);
+ 
+     // Modal Alteração
+     const [showAlter, setShowAlter] = useState(false);
+     const handleAlterClose = () => setShowAlter(false);
+     const handleAlterShow = () => setShowAlter(true);
+    
     const [listagem, setListagem] = useState(props.listVendedores);
 
     function DeletarVendedor(id){
-        setIdVendedor(id);
-        setDeleteModalShow(true);
+        setId(id);
+        handleDeleteShow();
     }  
 
     function EditarVendedor(item){
-        setVendedor(item);
-        setAlteracaoModalShow(true);
+        setId(item.id);
+        setNome(item.nome);
+        setEmail(item.email);
+        setCidade(item.cidade);
+        setUf(item.uf);
+        handleAlterShow();
+    }
+
+    async function handleAlterRegister(e) {
+        e.preventDefault();
+        try {
+            const data = {
+                id,
+                nome,
+                email,
+                cidade,
+                uf,
+            }        
+            const response = await api.post('/Vendedor', data);
+            if (response.status == 200) {
+                alert('Dados Alterados com sucesso');
+                handleAlterClose();
+            }else {
+                alert('Erro ao alterar dados');
+                handleAlterClose();
+            }
+        } catch (err) {
+            alert('Erro ao alterar dados');
+        }
+        
+    }
+
+    async function handleDeleteRegister() {
+        try {
+          const response = await api.delete(`/Vendedor/${id}`);    
+          if (response.status == 200) {
+                alert('Registros excluídos com sucesso');
+                handleDeleteClose();
+            }else {
+                alert('Erro ao deletar dados');
+                handleDeleteClose();
+            }
+        } catch(err) {
+          alert('Erro ao deletar dados');
+          handleDeleteClose();
+        } 
     }
 
     const itens = listagem.map((item) =>
@@ -43,19 +100,74 @@ export default function List(props) {
                     </ListGroup>
                 </Col>
             </Row>
+            <Modal
+                size="lg" show={showDelete} onHide={handleDeleteClose}  aria-labelledby="contained-modal-title-vcenter"
+                centered >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Remover cliente  <strong className="id-produto">{id}</strong>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Você tem certeza que gostaria de excluir esse Vendedor?
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="btn-danger" onClick={handleDeleteClose}>Cancelar</Button>
+                    <Button onClick={handleDeleteRegister}>Confirmar</Button>
+                </Modal.Footer>
+            </Modal>
 
-            <ModalDeletarVendedor
-                show={modalDeleteShow}
-                onHide={() => setDeleteModalShow(false)}
-                id={idVendedor}
-            />
-             {Vendedor && (
-                <ModalAlterarVendedor
-                    show={modalAlteracaoShow}
-                    onHide={() => setAlteracaoModalShow(false)}
-                    item={Vendedor}  
-                /> 
-            )}
+        {nome &&
+            <Modal
+            size="lg"
+            show={showAlter} onHide={handleAlterClose}
+            aria-labelledby="contained-modal-title-vcenter">
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Editar Cliente <strong>{nome
+                    }</strong>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleAlterRegister}>
+                    <Form.Group controlId="formGroupNome">
+                        <Form.Label>Nome</Form.Label>
+                        <Form.Control
+                            type="Nome"
+                            value={nome}
+                            onChange={e => setNome(e.target.value)}
+                            placeholder="Nome" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupValor">
+                        <Form.Label>E-mail</Form.Label>
+                        <Form.Control
+                            type="Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            placeholder="Email" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupQuantidade">
+                        <Form.Label>Cidade</Form.Label>
+                        <Form.Control
+                            type="Cidade"
+                            value={cidade}
+                            onChange={e => setCidade(e.target.value)}
+                            placeholder="Cidade" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupQuantidade">
+                        <Form.Label>Uf</Form.Label>
+                        <Form.Control
+                            type="Uf"
+                            value={uf}
+                            onChange={e => setUf(e.target.value)}
+                            placeholder="Uf" />
+                    </Form.Group>
+                    <Button type="submit">Salvar</Button>
+                </Form>
+            </Modal.Body>
+        </Modal>}
         </div>
     );
 }

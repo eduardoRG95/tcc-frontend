@@ -25,7 +25,6 @@ export default function ModalAlteracao(props) {
 
     return (
         <Modal
-            {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter">
             <Modal.Header closeButton>

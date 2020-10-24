@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 
-import api from '../../services/api';
+import Lists from '../../services/serviceList';
 
 import List from '../../Components/Clientes/List';
 import ModalInsert from '../../Components/Clientes/Criar';
@@ -13,12 +13,13 @@ export default function Clientes() {
 
     const [listClientes, setListClientes] = useState([]);
 
-    useEffect(() => {
-        api.get('Usuario', {
-
-        }).then(response => {
+    async function GetListClientes() {
+        const response = await Lists('Usuario');
             setListClientes(response.data)
-        })
+    }
+
+    useEffect(() => {
+        GetListClientes();
     }, []);
 
     return (

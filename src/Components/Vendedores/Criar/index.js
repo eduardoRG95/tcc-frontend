@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
-import api from '../../../services/api';
+import insert from '../../../services/serviceInsert';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -26,8 +26,8 @@ export default function ModalInsert(props) {
             cidade,
             uf
         }
-        const response = await api.put('/vendedor', data);
-        if (response.status == 200) {
+        const response = await insert('/vendedor', data);
+        if (response) {
             handleClose()
         }else{
             handleClose()

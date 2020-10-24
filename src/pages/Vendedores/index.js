@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Col, Row } from 'react-bootstrap';
-import { FiUser } from 'react-icons/fi';
+import { Container, Col, Row } from 'react-bootstrap';
 
-import api from '../../services/api';
+import Lists from '../../services/serviceList';
 
 import Modal from '../../Components/Vendedores/Criar';
 import List from '../../Components/Vendedores/List';
@@ -12,16 +11,16 @@ import './styles.css';
 
 export default function Vendedores() {
 
-    const [modalShow, setModalShow] = useState(false);
     const [listVendedores, setListVendedores] = useState([]);
 
-    useEffect(() => {
-        api.get('vendedor', {
+    async function GetListVendedores() {
+        const response = await Lists('vendedor');
+        setListVendedores(response.data)
+    }
 
-        }).then(response => {
-            setListVendedores(response.data)
-        })
-    }, [])
+    useEffect(() => {
+        GetListVendedores();
+    }, []);
 
     return (
         <div className="usuarios-container">

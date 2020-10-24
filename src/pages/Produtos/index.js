@@ -5,7 +5,7 @@ import Header from '../../Components/Admin/Header';
 import List from '../../Components/Produtos/List';
 import ModalInsert from '../../Components/Produtos/Criar';
 
-import api from '../../services/api';
+import Lists from '../../services/serviceList';
 
 import { Container, Row,Col } from 'react-bootstrap';
 
@@ -13,16 +13,16 @@ import './styles.css';
 
 export default function Produtos() {
 
-  
     const [listProdutos, setListProdutos] = useState([]);
+    
+    async function GetListProdutos() {
+        const response = await Lists('produto');
+        setListProdutos(response.data)
+    }
 
     useEffect(() => {
-        api.get('produto', {
-
-        }).then(response => {
-            setListProdutos(response.data)
-        })
-    }, [])
+        GetListProdutos();
+    }, []);
 
     return (
         <div className="produtos-container">

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button, Modal, Form } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
+// Services
 import Edition from '../../../services/serviceEdition';
+import Delete from '../../../services/serviceDelete';
 
 export default function List(props) {
 
@@ -42,19 +44,19 @@ export default function List(props) {
     }
 
     async function handleDeleteRegister() {
-        // try {
-        //   const response = await api.delete(`/Usuario/${idUsuario}`);    
-        //   if (response.status == 200) {
-        //         alert('Registros excluídos com sucesso');
-        //         handleDeleteClose();
-        //     }else {
-        //         alert('Erro ao deletar dados');
-        //         handleDeleteClose();
-        //     }
-        // } catch(err) {
-        //   alert('Erro ao deletar dados');
-        //   handleDeleteClose();
-        // } 
+        try {
+          const response = await Delete('/Usuario/', idUsuario);    
+          if (response) {
+                alert('Registros excluídos com sucesso');
+                handleDeleteClose();
+            }else {
+                alert('Erro ao deletar dados');
+                handleDeleteClose();
+            }
+        } catch(err) {
+          alert('Erro ao deletar dados');
+          handleDeleteClose();
+        } 
     }
 
     async function handleAlterRegister(e) {

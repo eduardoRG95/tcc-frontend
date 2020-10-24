@@ -3,12 +3,12 @@ import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import api from '../../../services/api';
+//Services
 import Edition from '../../../services/serviceEdition';
+import Delete from '../../../services/serviceDelete';
 
 
 export default function List(props) {
-
 
     // Propriedades clientes
     const [id, setId] = useState();
@@ -69,8 +69,8 @@ export default function List(props) {
 
     async function handleDeleteRegister() {
         try {
-          const response = await api.delete(`/Vendedor/${id}`);    
-          if (response.status == 200) {
+          const response = await Delete('/Vendedor/', id);    
+          if (response) {
                 alert('Registros excluídos com sucesso');
                 handleDeleteClose();
             }else {

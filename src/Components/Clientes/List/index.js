@@ -3,9 +3,7 @@ import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import api from '../../../services/api';
-
-
+import Edition from '../../../services/serviceEdition';
 
 export default function List(props) {
 
@@ -44,19 +42,19 @@ export default function List(props) {
     }
 
     async function handleDeleteRegister() {
-        try {
-          const response = await api.delete(`/Usuario/${idUsuario}`);    
-          if (response.status == 200) {
-                alert('Registros excluídos com sucesso');
-                handleDeleteClose();
-            }else {
-                alert('Erro ao deletar dados');
-                handleDeleteClose();
-            }
-        } catch(err) {
-          alert('Erro ao deletar dados');
-          handleDeleteClose();
-        } 
+        // try {
+        //   const response = await api.delete(`/Usuario/${idUsuario}`);    
+        //   if (response.status == 200) {
+        //         alert('Registros excluídos com sucesso');
+        //         handleDeleteClose();
+        //     }else {
+        //         alert('Erro ao deletar dados');
+        //         handleDeleteClose();
+        //     }
+        // } catch(err) {
+        //   alert('Erro ao deletar dados');
+        //   handleDeleteClose();
+        // } 
     }
 
     async function handleAlterRegister(e) {
@@ -69,8 +67,8 @@ export default function List(props) {
                 cidadeUsuario,
                 uf,
             }        
-            const response = await api.post('/Usuario', data);
-            if (response.status == 200) {
+            const response = await Edition('/Usuario', data);
+            if (response) {
                 alert('Dados Alterados com sucesso');
                 handleAlterClose();
             }else {

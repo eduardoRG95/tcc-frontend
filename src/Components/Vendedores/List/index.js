@@ -4,6 +4,7 @@ import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
 import api from '../../../services/api';
+import Edition from '../../../services/serviceEdition';
 
 
 export default function List(props) {
@@ -52,8 +53,8 @@ export default function List(props) {
                 cidade,
                 uf,
             }        
-            const response = await api.post('/Vendedor', data);
-            if (response.status == 200) {
+            const response = await Edition('/Vendedor', data);
+            if (response) {
                 alert('Dados Alterados com sucesso');
                 handleAlterClose();
             }else {

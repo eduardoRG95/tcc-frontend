@@ -3,8 +3,7 @@ import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
-import api from '../../../services/api';
-
+import Edition from '../../../services/serviceEdition';
 
 export default function List(props) {
 
@@ -42,20 +41,20 @@ export default function List(props) {
     }
 
     async function handleDeleteRegister() {
-        try {
-            const response = await api.delete(`/Produto/${id}`);
-            if (response.status == 200) {
-                alert('Dados excluídos com sucesso');
-                handleDeleteClose();
-            }else {
-                alert('Erro ao deletar dados');
-                handleDeleteClose();
-            }
+        // try {
+        //     const response = await api.delete(`/Produto/${id}`);
+        //     if (response.status == 200) {
+        //         alert('Dados excluídos com sucesso');
+        //         handleDeleteClose();
+        //     }else {
+        //         alert('Erro ao deletar dados');
+        //         handleDeleteClose();
+        //     }
 
-        } catch (err) {
-            alert('Erro ao deletar dados');
-            handleDeleteClose();
-        }
+        // } catch (err) {
+        //     alert('Erro ao deletar dados');
+        //     handleDeleteClose();
+        // }
     }
     async function handleAlterRegister(e) {
         e.preventDefault();
@@ -67,8 +66,8 @@ export default function List(props) {
                 quantidade
             }
             
-            const response = await api.post('/produto', data);
-            if (response.status == 200) {
+            const response = await Edition('/produto', data);
+            if (response) {
                 alert('Dados Alterados com sucesso');
                 handleAlterClose();
             }else {

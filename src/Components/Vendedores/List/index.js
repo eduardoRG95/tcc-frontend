@@ -3,9 +3,12 @@ import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
+import Loader from 'react-loader-spinner'
+
 //Services
 import Edition from '../../../services/serviceEdition';
 import Delete from '../../../services/serviceDelete';
+import userEvent from '@testing-library/user-event';
 
 
 export default function List(props) {
@@ -16,6 +19,10 @@ export default function List(props) {
     const [email, setEmail] = useState();
     const [cidade, setCidade] = useState();
     const [uf, setUf] = useState();
+
+
+    // loader
+    const [loader, setLoader] = useState(false);
 
      // Modal de Excluir
      const [showDelete, setShowDelete] = useState(false);
@@ -45,6 +52,7 @@ export default function List(props) {
 
     async function handleAlterRegister(e) {
         e.preventDefault();
+        setLoader(true);
         try {
             const data = {
                 id,
@@ -56,9 +64,11 @@ export default function List(props) {
             const response = await Edition('/Vendedor', data);
             if (response) {
                 alert('Dados Alterados com sucesso');
+                setLoader(false);
                 handleAlterClose();
             }else {
                 alert('Erro ao alterar dados');
+                setLoader(false);
                 handleAlterClose();
             }
         } catch (err) {
@@ -68,13 +78,16 @@ export default function List(props) {
     }
 
     async function handleDeleteRegister() {
+        setLoader(true);
         try {
           const response = await Delete('/Vendedor/', id);    
           if (response) {
                 alert('Registros excluídos com sucesso');
+                setLoader(false); 
                 handleDeleteClose();
             }else {
                 alert('Erro ao deletar dados');
+                setLoader(false);
                 handleDeleteClose();
             }
         } catch(err) {
@@ -94,6 +107,15 @@ export default function List(props) {
 
     return (
         <div>
+              <Loader
+                    type="Rings"
+                    className="loader"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    visible={loader}
+            
+                />
             <Row className="justify-content-md-center">
                 <Col md={10}>
                     <ListGroup variant="flush" className="list-vendedores">

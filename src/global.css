@@ -27,3 +27,16 @@ h1 {
     padding-bottom: 10px;
     font-weight: 600;
 }
+
+.loader{
+    position: absolute;
+    z-index: 99999;
+    background: #fff;
+    opacity: 0.8;
+    left: 0;
+    width: 100%;
+    top: 0;
+    height: 700px;
+    text-align: center;
+    padding-top: 25%;
+}

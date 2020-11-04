@@ -3,12 +3,13 @@ import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form, Input } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
 
+// native react
 import Loader from 'react-loader-spinner'
+import SearchField from 'react-search-field';
 
 //Services
 import Edition from '../../../services/serviceEdition';
-import Delete from '../../../services/serviceDelete';
-import userEvent from '@testing-library/user-event';
+import Delete from '../../../services/serviceDelete'
 
 
 export default function List(props) {
@@ -106,7 +107,12 @@ export default function List(props) {
     );
 
     return (
+        
         <div>
+            <SearchField 
+                placeholder='Search item'
+                onChange={onChange}
+            />
               <Loader
                     type="Rings"
                     className="loader"

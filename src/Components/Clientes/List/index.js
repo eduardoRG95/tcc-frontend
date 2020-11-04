@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Row, Col, ListGroup, Button, Modal, Form } from 'react-bootstrap';
 import { FiXCircle, FiEdit } from 'react-icons/fi';
+// native react
+import Loader from 'react-loader-spinner'
 
 // Services
 import Edition from '../../../services/serviceEdition';
@@ -26,6 +28,8 @@ export default function List(props) {
     const handleAlterClose = () => setShowAlter(false);
     const handleAlterShow = () => setShowAlter(true);
 
+    const [loader, setLoader] = useState(false);
+
     // Listagem
     const [listagem] = useState(props.listClientes);
 
@@ -44,23 +48,28 @@ export default function List(props) {
     }
 
     async function handleDeleteRegister() {
+        setLoader(true);
         try {
           const response = await Delete('/Usuario/', idUsuario);    
           if (response) {
                 alert('Registros excluídos com sucesso');
+                setLoader(false); 
                 handleDeleteClose();
             }else {
                 alert('Erro ao deletar dados');
+                setLoader(false); 
                 handleDeleteClose();
             }
         } catch(err) {
           alert('Erro ao deletar dados');
+          setLoader(false); 
           handleDeleteClose();
         } 
     }
 
     async function handleAlterRegister(e) {
         e.preventDefault();
+        setLoader(true);
         try {
             const data = {
                 idUsuario,
@@ -72,13 +81,16 @@ export default function List(props) {
             const response = await Edition('/Usuario', data);
             if (response) {
                 alert('Dados Alterados com sucesso');
+                setLoader(false);
                 handleAlterClose();
             }else {
                 alert('Erro ao alterar dados');
+                setLoader(false);
                 handleAlterClose();
             }
         } catch (err) {
             alert('Erro ao alterar dados');
+            setLoader(false);
         }
         
     }
@@ -95,6 +107,14 @@ export default function List(props) {
 
     return (
         <div>
+             <Loader
+                type="Rings"
+                className="loader"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                visible={loader}        
+            />
             <Row className="justify-content-md-center">
                 <Col md={10}>
                     <ListGroup variant="flush" className="list-usuarios">

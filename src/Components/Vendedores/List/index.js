@@ -5,7 +5,6 @@ import { FiXCircle, FiEdit } from 'react-icons/fi';
 
 // native react
 import Loader from 'react-loader-spinner'
-import SearchField from 'react-search-field';
 
 //Services
 import Edition from '../../../services/serviceEdition';
@@ -74,6 +73,8 @@ export default function List(props) {
             }
         } catch (err) {
             alert('Erro ao alterar dados');
+            handleAlterClose();
+            setLoader(false);
         }
         
     }
@@ -93,6 +94,7 @@ export default function List(props) {
             }
         } catch(err) {
           alert('Erro ao deletar dados');
+          setLoader(false); 
           handleDeleteClose();
         } 
     }
@@ -109,19 +111,15 @@ export default function List(props) {
     return (
         
         <div>
-            <SearchField 
-                placeholder='Search item'
-                onChange={onChange}
+            <Loader
+                type="Rings"
+                className="loader"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                visible={loader}
+        
             />
-              <Loader
-                    type="Rings"
-                    className="loader"
-                    color="#00BFFF"
-                    height={100}
-                    width={100}
-                    visible={loader}
-            
-                />
             <Row className="justify-content-md-center">
                 <Col md={10}>
                     <ListGroup variant="flush" className="list-vendedores">

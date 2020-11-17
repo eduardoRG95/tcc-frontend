@@ -81,7 +81,7 @@ export default function ModalInsert(props) {
                             onChange={e => setUf(e.target.value)}
                             placeholder="Uf" />
                     </Form.Group>
-                    <Button type="submit">Sa    lvar</Button>
+                    <Button type="submit">Salvar</Button>
                 </Form>
             </Modal.Body>
         </Modal>

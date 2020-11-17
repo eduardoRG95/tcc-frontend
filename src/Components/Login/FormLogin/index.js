@@ -12,7 +12,7 @@ export default function FormLogin() {
     const history = useHistory();
 
     function login(){
-        if(email !== "1@1" || senha !== "1"){
+        if(email !== "teste@teste.com" || senha !== "1234"){
             alert("login incorreto");
         }else{
             history.push('/produtos');
